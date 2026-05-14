@@ -9,16 +9,16 @@ export const jwttoken =  {
     try {
       return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
     } catch (e) {
-        logger.error('Failed to authenticate token', e);
-        throw new Error('Failed to authenticate token');
+      logger.error('Failed to authenticate token', e);
+      throw new Error('Failed to authenticate token', {cause: e});
     }
   },
   verify: (token) => {
     try {
       return jwt.verify(token, JWT_SECRET);
     } catch (e) {
-        logger.error('Failed to authenticate token', e);
-        throw new Error('Failed to authenticate token');
+      logger.error('Failed to authenticate token', e);
+      throw new Error('Failed to authenticate token', {cause: e});
     }
   }
 };
