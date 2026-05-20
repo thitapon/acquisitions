@@ -22,6 +22,8 @@ export const createUser = async ({ name, email, password, role = 'user'}) => {
 
     const password_hash = await hashPassword(password);
 
+    console.log(name, email, password, role);
+
     const [ newUser ] = await db
       .insert(users)
       .values({ name, email, password: password_hash, role})
